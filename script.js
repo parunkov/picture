@@ -31,22 +31,36 @@
 		});
 		picture.removeEventListener('click', onPictureClick);
 		pictureBigOpen = true;
+		
+	 	document.addEventListener('click', function(evt) {
+		// console.log(pictureBigOpen);
+		console.log(evt.target != pictureBig);
+		console.log('open ' + pictureBigOpen);
+	// 	if (pictureBigOpen) {
+	// 		if (evt.target != pictureBig) {
+	// 			// pictureBig.remove();
+	// 			picture.addEventListener('click', onPictureClick);
+	// 			// document.removeEventListener('click', onClick);
+	// 			pictureBigOpen = false;
+	// 		}
+	// 	}
+	});
 
 	
 	}
 	picture.addEventListener('click', onPictureClick);
-	document.addEventListener('click', function(evt) {
-		// console.log(pictureBigOpen);
-		console.log(evt.target != pictureBig);
-		console.log(pictureBig.length);
-		if (pictureBig.length) {
-			if (evt.target != pictureBig) {
-				pictureBig.remove();
-				picture.addEventListener('click', onPictureClick);
-				// document.removeEventListener('click', onClick);
-				pictureBigOpen = false;
-			}
-		}
-	});
+	// document.addEventListener('click', function(evt) {
+	// 	// console.log(pictureBigOpen);
+	// 	console.log(evt.target != pictureBig);
+	// 	console.log(pictureBigOpen);
+	// 	if (pictureBigOpen) {
+	// 		if (evt.target != pictureBig) {
+	// 			// pictureBig.remove();
+	// 			picture.addEventListener('click', onPictureClick);
+	// 			// document.removeEventListener('click', onClick);
+	// 			pictureBigOpen = false;
+	// 		}
+	// 	}
+	// });
 	
 })();

@@ -20,17 +20,12 @@
 		pictureBig.prepend(popupClose);
 		popupClose.setAttribute('style', popupCloseStyle);
 
-		const closePopup = function() {
+		popupClose.addEventListener('click', function(evt) {
+			evt.preventDefault();
 			pictureBig.remove();
 			picture.addEventListener('click', onPictureClick);
 			document.removeEventListener('click', onClick);
 			pictureBigOpen = false;
-			blockleft.removeAttribute('style');
-		}
-
-		popupClose.addEventListener('click', function(evt) {
-			evt.preventDefault();
-			closePopup();
 		});
 		picture.removeEventListener('click', onPictureClick);
 		setTimeout(() => pictureBigOpen = true, 300);
@@ -38,7 +33,10 @@
 		let onClick = function(evt) {
 			if (pictureBigOpen) {
 				if (evt.target != pictureBig) {
-					closePopup();
+					pictureBig.remove();
+					picture.addEventListener('click', onPictureClick);
+					document.removeEventListener('click', onClick);
+					pictureBigOpen = false;
 				}
 			}
 		}

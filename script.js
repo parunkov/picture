@@ -1,17 +1,18 @@
 (function() {
 	let pictureBigOpen = false;
 	let picture = document.querySelector('.wp-image-3795');
-	let blockleft = document.querySelector('.blockleft');
 
 	let style = 'position: absolute; top: -100px; left:90px; width: 912px; height: 480px; background: url(' + picture.src + ') no-repeat; background-size: contain;';
 	let popupCloseStyle = 'font-size: 30px; text-align: right; padding-top: 10px; padding-right: 20px; cursor: pointer;';
 
 	let onPictureClick = function(evt) {
 		evt.preventDefault();
-		pictureBig = document.createElement('div');
+		let pictureWrap = document.createElement('div');
+		pictureWrap.setAttribute('style', 'position: relative;');
+		let pictureBig = document.createElement('div');
 		pictureBig.className = 'picture-big';
-		blockleft.prepend(pictureBig);
-		blockleft.setAttribute('style', 'position: relative;');
+		picture.before(pictureWrap);
+		pictureWrap.prepend(pictureBig);
 		pictureBig.setAttribute('style', style);
 
 		let popupClose = document.createElement('div');
@@ -21,11 +22,10 @@
 		popupClose.setAttribute('style', popupCloseStyle);
 
 		const closePopup = function() {
-			pictureBig.remove();
+			pictureWrap.remove();
 			picture.addEventListener('click', onPictureClick);
 			document.removeEventListener('click', onClick);
 			pictureBigOpen = false;
-			blockleft.removeAttribute('style');
 		}
 
 		popupClose.addEventListener('click', function(evt) {

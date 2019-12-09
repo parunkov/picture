@@ -1,0 +1,17 @@
+
+.picture-big {
+	position: absolute; 
+	top: -100px; 
+	left:90px; 
+	width: 912px; 
+	height: 480px; 
+	background-repeat: no-repeat; 
+	background-size: contain;';
+}
+.popup-close {
+	font-size: 30px; 
+	text-align: right; 
+	padding-top: 10px; 
+	padding-right: 20px; 
+	cursor: pointer;
+}

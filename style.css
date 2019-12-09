@@ -1,4 +1,17 @@
-
+@keyframes big {
+	0% {
+		top: 0;
+		left: 0;
+		width: 500px;
+		height: 263px;
+	}
+	100% {
+		top: -100px; 
+		left:90px; 
+		width: 912px; 
+		height: 480px;
+	}
+}
 .picture-big {
 	position: absolute; 
 	top: -100px; 
@@ -6,7 +19,8 @@
 	width: 912px; 
 	height: 480px; 
 	background-repeat: no-repeat; 
-	background-size: contain;';
+	background-size: contain;
+	animation: big 1s;
 }
 .popup-close {
 	font-size: 30px; 

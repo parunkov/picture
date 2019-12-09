@@ -2,7 +2,6 @@
 	let pictureBigOpen = false;
 	let picture = document.querySelectorAll('.popup-open');
 
-	// let popupCloseStyle = 'font-size: 30px; text-align: right; padding-top: 10px; padding-right: 20px; cursor: pointer;';
 
 	for (let i = 0; i < picture.length; i++) {
 		let style = 'background-image: url(' + picture[i].src + ');';
@@ -20,7 +19,6 @@
 			popupClose.className = 'popup-close';
 			popupClose.innerHTML = 'Закрыть Х';
 			pictureBig.prepend(popupClose);
-			// popupClose.setAttribute('style', popupCloseStyle);
 
 			const closePopup = function() {
 				pictureWrap.remove();

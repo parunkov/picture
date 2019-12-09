@@ -1,48 +1,53 @@
 (function() {
 	let pictureBigOpen = false;
-	let picture = document.querySelector('.wp-image-3795');
-	let blockleft = document.querySelector('.blockleft');
+	let picture = document.querySelectorAll('.popup-open');
 
-	let style = 'position: absolute; top: -100px; left:90px; width: 912px; height: 480px; background: url(' + picture.src + ') no-repeat; background-size: contain;';
-	let popupCloseStyle = 'font-size: 30px; text-align: right; padding-top: 10px; padding-right: 20px; cursor: pointer;';
 
-	let onPictureClick = function(evt) {
-		evt.preventDefault();
-		pictureBig = document.createElement('div');
-		pictureBig.className = 'picture-big';
-		blockleft.prepend(pictureBig);
-		blockleft.setAttribute('style', 'position: relative;');
-		pictureBig.setAttribute('style', style);
-
-		let popupClose = document.createElement('div');
-		popupClose.className = 'popup-close';
-		popupClose.innerHTML = 'Закрыть Х';
-		pictureBig.prepend(popupClose);
-		popupClose.setAttribute('style', popupCloseStyle);
-
-		const closePopup = function() {
-			pictureBig.remove();
-			picture.addEventListener('click', onPictureClick);
-			document.removeEventListener('click', onClick);
-			pictureBigOpen = false;
-			blockleft.removeAttribute('style');
-		}
-
-		popupClose.addEventListener('click', function(evt) {
+	for (let i = 0; i < picture.length; i++) {
+		let style = 'background-image: url(' + picture[i].src + ');';
+		let onPictureClick = function(evt) {
 			evt.preventDefault();
-			closePopup();
-		});
-		picture.removeEventListener('click', onPictureClick);
-		setTimeout(() => pictureBigOpen = true, 300);
-		
-		let onClick = function(evt) {
-			if (pictureBigOpen) {
-				if (evt.target != pictureBig) {
-					closePopup();
+			let pictureWrap = document.createElement('div');
+			pictureWrap.setAttribute('style', 'position: relative;');
+			let pictureBig = document.createElement('div');
+			pictureBig.className = 'picture-big';
+			picture[i].before(pictureWrap);
+			pictureWrap.prepend(pictureBig);
+			pictureBig.setAttribute('style', style);
+
+			let popupClose = document.createElement('div');
+			popupClose.className = 'popup-close';
+			popupClose.innerHTML = 'Закрыть Х';
+			pictureBig.prepend(popupClose);
+
+			let bgDark = document.createElement('div');
+			bgDark.className = 'bg-dark';
+			document.body.append(bgDark);
+
+			const closePopup = function() {
+				pictureWrap.remove();
+				bgDark.remove();
+				picture[i].addEventListener('click', onPictureClick);
+				document.removeEventListener('click', onClick);
+				pictureBigOpen = false;
+			}
+
+			popupClose.addEventListener('click', function(evt) {
+				evt.preventDefault();
+				closePopup();
+			});
+			picture[i].removeEventListener('click', onPictureClick);
+			setTimeout(() => pictureBigOpen = true, 300);
+			
+			let onClick = function(evt) {
+				if (pictureBigOpen) {
+					if (evt.target != pictureBig) {
+						closePopup();
+					}
 				}
 			}
+			document.addEventListener('click', onClick);
 		}
-		document.addEventListener('click', onClick);
-	}
-	picture.addEventListener('click', onPictureClick);	
+		picture[i].addEventListener('click', onPictureClick);
+	}	
 })();

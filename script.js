@@ -20,8 +20,13 @@
 			popupClose.innerHTML = 'Закрыть Х';
 			pictureBig.prepend(popupClose);
 
+			let bgDark = document.createElement('div');
+			bgDark.className = 'bg-dark';
+			document.body.append(bgDark);
+
 			const closePopup = function() {
 				pictureWrap.remove();
+				bgDark.remove();
 				picture[i].addEventListener('click', onPictureClick);
 				document.removeEventListener('click', onClick);
 				pictureBigOpen = false;
